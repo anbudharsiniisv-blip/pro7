@@ -32,15 +32,15 @@ padding:35px;
 border-radius:25px;
 box-shadow:0 15px 40px rgba(0,0,0,.2);
 text-align:center;
+animation:fadeIn 1s;
 position:relative;
 z-index:10;
-animation:fadeIn 1s;
 }
 
 @keyframes fadeIn{
 from{
 opacity:0;
-transform:translateY(40px);
+transform:translateY(30px);
 }
 to{
 opacity:1;
@@ -49,30 +49,31 @@ transform:translateY(0);
 }
 
 h1{
-color:#ff4081;
 font-size:40px;
-margin-bottom:10px;
+color:#ff4081;
+margin-bottom:15px;
 }
 
 .subtitle{
 font-size:20px;
 color:#555;
 margin-bottom:25px;
+line-height:1.6;
 }
 
 .progress{
+font-size:18px;
 color:#ff4081;
 font-weight:bold;
 margin-bottom:20px;
-font-size:18px;
 }
 
 .question{
 background:#fff0f5;
-padding:25px;
+padding:20px;
 border-radius:15px;
 text-align:left;
-margin-top:20px;
+box-shadow:0 4px 10px rgba(255,64,129,.15);
 }
 
 .question h3{
@@ -117,53 +118,47 @@ pointer-events:none;
 
 .b1{
 left:10%;
-bottom:-80px;
+bottom:-100px;
 }
 
 .b2{
 left:50%;
-bottom:-100px;
+bottom:-120px;
 animation-delay:2s;
 }
 
 .b3{
 right:10%;
-bottom:-120px;
+bottom:-140px;
 animation-delay:4s;
 }
 
 @keyframes float{
-
 0%{
 transform:translateY(0);
 }
-
 100%{
 transform:translateY(-130vh);
 }
-
 }
 
 .heart{
 position:fixed;
 bottom:-30px;
-font-size:25px;
+font-size:24px;
 animation:rise 6s linear infinite;
 pointer-events:none;
 }
 
 @keyframes rise{
-
 0%{
 transform:translateY(0) rotate(0deg);
 opacity:1;
 }
-
 100%{
 transform:translateY(-120vh) rotate(360deg);
 opacity:0;
 }
-
 }
 
 #surprise{
@@ -173,7 +168,7 @@ display:none;
 @media(max-width:768px){
 
 .container{
-padding:25px;
+padding:20px;
 }
 
 h1{
@@ -184,10 +179,6 @@ font-size:30px;
 font-size:17px;
 }
 
-.question h3{
-font-size:20px;
-}
-
 button{
 width:100%;
 }
@@ -195,6 +186,7 @@ width:100%;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -234,11 +226,6 @@ Next ➜
 
 <div id="surprise">
 
-<!-- PART 2 GOES HERE -->
-
-</div>
-
-</div>
 <h1>🎊 Happy Birthday Dora 🎊</h1>
 
 <div style="font-size:60px;margin:20px 0;">
@@ -249,30 +236,28 @@ Next ➜
 
 Dear Dora ❤️<br><br>
 
-Today is all about celebrating you! 🥳<br><br>
+Today is your special day! 🥳<br><br>
 
-May your birthday be filled with happiness,
-love, laughter, success and unforgettable memories. 🌸<br><br>
+I hope your birthday is filled with
+love, laughter, happiness and countless beautiful memories. 💖<br><br>
 
-Keep smiling because your smile is beautiful. 😊<br><br>
+May every dream you have come true,
+and may every new day bring you
+joy, success and good health. 🌸<br><br>
 
-May all your dreams come true and
-may every new day bring you more happiness. 💖<br><br>
+Never stop smiling because your smile
+makes the world brighter. 😊✨<br><br>
 
-✨ Stay Happy<br>
-✨ Stay Blessed<br>
-✨ Stay Amazing<br><br>
-
-🎂 Happy Birthday Once Again! 🎂
+Happy Birthday Once Again! 🎂❤️
 
 </p>
 
-<div style="font-size:60px;margin:25px 0;">
+<div style="font-size:55px;margin:20px 0;">
 🎉 🎊 🎈 💝 🎂 🌹 ❤️ 🎁
 </div>
 
 <h2 style="color:#ff4081;">
-From Your Best Friend 💖
+Made Especially For You 💖
 </h2>
 
 <br>
@@ -281,8 +266,8 @@ From Your Best Friend 💖
 🎁
 </div>
 
-<button onclick="playMusic()">
-❤️ Play Birthday Music
+<button id="musicBtn" onclick="playMusic()">
+▶️ Play Birthday Song 🎵
 </button>
 
 <audio id="song">
@@ -303,7 +288,7 @@ options:["💗 Pink","💙 Blue","🖤 Black"]
 },
 
 {
-question:"🍫 Which one do you like most?",
+question:"🍫 Which dessert do you like most?",
 options:["🍫 Chocolate","🍦 Ice Cream","🎂 Cake"]
 },
 
@@ -325,17 +310,17 @@ showQuestion();
 
 function showQuestion(){
 
-document.getElementById("progress").innerHTML=
-"Question "+(current+1)+" of "+questions.length;
+document.getElementById("progress").innerHTML =
+"Question " + (current+1) + " of " + questions.length;
 
-document.getElementById("questionTitle").innerHTML=
+document.getElementById("questionTitle").innerHTML =
 questions[current].question;
 
-let html="";
+let html = "";
 
 questions[current].options.forEach(option=>{
 
-html+=`
+html += `
 <label>
 <input type="radio" name="answer">
 ${option}
@@ -344,11 +329,11 @@ ${option}
 
 });
 
-document.getElementById("options").innerHTML=html;
+document.getElementById("options").innerHTML = html;
 
-if(current==questions.length-1){
+if(current == questions.length-1){
 
-document.getElementById("nextBtn").innerHTML=
+document.getElementById("nextBtn").innerHTML =
 "🎁 Reveal My Surprise";
 
 }
@@ -357,7 +342,8 @@ document.getElementById("nextBtn").innerHTML=
 
 function nextQuestion(){
 
-const selected=document.querySelector('input[name="answer"]:checked');
+const selected =
+document.querySelector('input[name="answer"]:checked');
 
 if(!selected){
 
@@ -369,7 +355,7 @@ return;
 
 current++;
 
-if(current<questions.length){
+if(current < questions.length){
 
 showQuestion();
 
@@ -378,11 +364,7 @@ else{
 
 document.getElementById("questions").style.display="none";
 
-setTimeout(()=>{
-
 document.getElementById("surprise").style.display="block";
-
-},800);
 
 }
 
@@ -390,7 +372,7 @@ document.getElementById("surprise").style.display="block";
 
 function openGift(){
 
-alert("🎉 Surprise!! Happy Birthday Dora ❤️");
+alert("🎉 Happy Birthday Dora! ❤️🎂");
 
 }
 
